@@ -1,5 +1,5 @@
 import 'package:fluro/fluro.dart';
 
 abstract class IRouterProvider {
-  void initRouter(FluroRouter router)
+  void initRouter(FluroRouter router);
 }

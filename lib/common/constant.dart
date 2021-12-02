@@ -11,6 +11,8 @@ class Constant {
   static const String code = "code";
 
   static const String spToken = "token";
+  static const String spShowGuide = "showGuide";
 
   static const String baseUrl = "http://kza666.com/gateway/";
+
 }
