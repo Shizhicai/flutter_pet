@@ -37,6 +37,7 @@ dependencies:
   rxdart: ^0.27.2
   # 侧滑删除 https://github.com/letsar/flutter_slidable
   flutter_slidable: ^0.6.0
+  decimal: 1.5.0
 
 dev_dependencies:
   flutter_test:
@@ -46,3 +47,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+  assets:
+    - assets/images/
+    - assets/images/state/

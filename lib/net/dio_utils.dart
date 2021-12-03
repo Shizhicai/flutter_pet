@@ -36,6 +36,8 @@ typedef NetErrorCallback = Function(int code, String msg);
 class DioUtils {
   factory DioUtils() => _singleton;
   static final DioUtils _singleton = DioUtils._();
+
+  static DioUtils get instance => DioUtils();
   static late Dio _dio;
 
   Dio get dio => _dio;

@@ -85,7 +85,7 @@ class MyApp extends StatelessWidget {
       // showSemanticsDebugger: true, // 显示语义视图
       // checkerboardOffscreenLayers: true, // 检查离屏渲染
 
-      home: home ?? SplashPage(),
+      home: home ?? const SplashPage(),
       onGenerateRoute: Routes.router.generator,
       navigatorKey: navigatorKey,
       builder: (BuildContext context, Widget? child) {

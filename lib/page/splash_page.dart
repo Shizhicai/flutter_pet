@@ -5,6 +5,7 @@ import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_pet/common/constant.dart';
+import 'package:flutter_pet/routers/fluro_navigator.dart';
 import 'package:flutter_pet/utils/device_utils.dart';
 import 'package:flutter_pet/utils/image_utils.dart';
 import 'package:flutter_pet/utils/theme_utils.dart';
@@ -13,6 +14,8 @@ import 'package:flutter_pet/widget/load_image.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:rxdart/rxdart.dart';
+
+import 'login/login_router.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -69,7 +72,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void _goLogin() {
-    Toast.show("去登录");
+    NavigatorUtils.push(context, LoginRouter.loginPage, replace: true);
   }
 
   @override

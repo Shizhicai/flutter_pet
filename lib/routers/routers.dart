@@ -1,5 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_pet/page/login/login_router.dart';
 import 'package:flutter_pet/page/not_found_page.dart';
 import 'package:flutter_pet/routers/i_router.dart';
 
@@ -28,11 +29,12 @@ class Routes {
 
     _listRouter.clear();
 
-    /// 各个路由模块统一添加初始化
-    // _listRouter.add(LoginRouter());
+    /// TODO 各个路由模块统一添加初始化
+    _listRouter.add(LoginRouter());
     void initRouter(IRouterProvider routerProvider) {
       routerProvider.initRouter(router);
     }
+
     _listRouter.forEach(initRouter);
   }
 }
