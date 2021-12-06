@@ -18,9 +18,7 @@ class TokenInterceptor extends Interceptor {
   }
 }
 
-
-class LoggingInterceptor extends Interceptor{
-
+class LoggingInterceptor extends Interceptor {
   late DateTime _startTime;
   late DateTime _endTime;
 
@@ -31,7 +29,8 @@ class LoggingInterceptor extends Interceptor{
     if (options.queryParameters.isEmpty) {
       Log.d('RequestUrl: ${options.baseUrl}${options.path}');
     } else {
-      Log.d('RequestUrl: ${options.baseUrl}${options.path}?${Transformer.urlEncodeMap(options.queryParameters)}');
+      Log.d(
+          'RequestUrl: ${options.baseUrl}${options.path}?${Transformer.urlEncodeMap(options.queryParameters)}');
     }
     Log.d('RequestMethod: ${options.method}');
     Log.d('RequestHeaders:${options.headers}');
@@ -62,8 +61,7 @@ class LoggingInterceptor extends Interceptor{
   }
 }
 
-class AdapterInterceptor extends Interceptor{
-
+class AdapterInterceptor extends Interceptor {
   static const String _kMsg = 'msg';
   static const String _kSlash = "'";
   static const String _kMessage = 'message';
@@ -91,8 +89,10 @@ class AdapterInterceptor extends Interceptor{
   Response adapterData(Response response) {
     String result;
     String content = response.data?.toString() ?? '';
+
     /// 成功时，直接格式化返回
-    if (response.statusCode == ExceptionHandle.success || response.statusCode == ExceptionHandle.success_not_content) {
+    if (response.statusCode == ExceptionHandle.success ||
+        response.statusCode == ExceptionHandle.success_not_content) {
       if (content.isEmpty) {
         content = _kDefaultText;
       }
@@ -114,7 +114,8 @@ class AdapterInterceptor extends Interceptor{
             if (_kSlash == content.substring(0, 1)) {
               content = content.substring(1, content.length - 1);
             }
-            final Map<String, dynamic> map = json.decode(content) as Map<String, dynamic>;
+            final Map<String, dynamic> map =
+                json.decode(content) as Map<String, dynamic>;
             if (map.containsKey(_kMessage)) {
               msg = map[_kMessage] as String;
             } else if (map.containsKey(_kMsg)) {
@@ -132,11 +133,13 @@ class AdapterInterceptor extends Interceptor{
           } catch (e) {
 //            Log.d('异常信息：$e');
             // 解析异常直接按照返回原数据处理（一般为返回500,503 HTML页面代码）
-            result = sprintf(_kFailureFormat, [response.statusCode, '服务器异常(${response.statusCode})']);
+            result = sprintf(_kFailureFormat,
+                [response.statusCode, '服务器异常(${response.statusCode})']);
           }
         }
       }
     }
+    print("解析数据 ==》 $result");
     response.data = result;
     return response;
   }

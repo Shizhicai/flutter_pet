@@ -4,21 +4,25 @@ import 'package:flutter_pet/net/api.dart';
 import 'package:flutter_pet/net/dio_utils.dart';
 import 'package:flutter_pet/page/login/iview/login_iview.dart';
 import 'package:flutter_pet/type/code_type.dart';
+import 'package:oktoast/oktoast.dart';
 
 class LoginPagePresenter extends BasePagePresenter<LoginIMvpView> {
   /// 获取验证码
-  void sendCode(String phone) {
-    final Map<String, String> params = <String, String>{};
+  Future<bool> sendCode(String phone) async {
+    final Map<String, dynamic> params = <String, String>{};
     params['phone'] = phone;
     params['type'] = CodeType.LOGIN.value;
-    asyncRequestNetwork<Object>(
+    bool? state = await requestNetwork<bool?>(
       Method.post,
       url: Api.sendCode,
-      queryParameters: params,
+      params: params,
       onSuccess: (data) {
-        print('发送成功');
+        if (data == true) {
+          showToast("发送成功");
+        }
       },
     );
+    return state ?? false;
   }
 
   /// 登录

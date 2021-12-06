@@ -12,11 +12,16 @@ class BaseEntity<T> {
     code = json[Constant.code];
     message = json[Constant.message];
     if (json.containsKey(Constant.data)) {
-      data = _generateOBJ(json[Constant.data] as Object);
+      if (json[Constant.data] is T) {
+        data = json[Constant.data] as T;
+      } else {
+        data = _generateOBJ(json[Constant.data] as Object);
+      }
     }
   }
 
   T? _generateOBJ(Object json) {
+    print("解析数据 $json ${T.toString()}");
     if (T.toString() == 'String') {
       return json.toString() as T;
     } else if (T.toString() == 'Map<String, dynamic>') {

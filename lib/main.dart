@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_pet/net/dio_utils.dart';
 import 'package:flutter_pet/net/intercept.dart';
+import 'package:flutter_pet/page/login/page/login_page.dart';
 import 'package:flutter_pet/page/not_found_page.dart';
 import 'package:flutter_pet/page/splash_page.dart';
 import 'package:flutter_pet/routers/routers.dart';
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
     }
 
     /// 适配数据(根据自己的数据结构，可自行选择添加)
-    interceptors.add(AdapterInterceptor());
+    // interceptors.add(AdapterInterceptor());
 
     configDio(
       baseUrl: Constant.baseUrl,
@@ -85,7 +86,7 @@ class MyApp extends StatelessWidget {
       // showSemanticsDebugger: true, // 显示语义视图
       // checkerboardOffscreenLayers: true, // 检查离屏渲染
 
-      home: home ?? const SplashPage(),
+      home: home ?? const LoginPage(),
       onGenerateRoute: Routes.router.generator,
       navigatorKey: navigatorKey,
       builder: (BuildContext context, Widget? child) {

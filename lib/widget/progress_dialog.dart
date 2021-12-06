@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pet/common/gaps.dart';
+import '../res/gaps.dart';
 
 class ProgressDialog extends Dialog {
   final String hintText;

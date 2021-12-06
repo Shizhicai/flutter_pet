@@ -113,7 +113,7 @@ class DioUtils {
     return options;
   }
 
-  Future requestNetwork<T>(
+  Future<T?> requestNetwork<T>(
     Method method,
     String url, {
     NetSuccessCallback<T?>? onSuccess,
@@ -130,12 +130,14 @@ class DioUtils {
       queryParameters: queryParameters,
       options: options,
       cancelToken: cancelToken,
-    ).then<void>((BaseEntity<T> result) {
-      if (result.code == 0) {
+    ).then<T?>((BaseEntity<T> result) {
+      if (result.code == ExceptionHandle.success) {
         onSuccess?.call(result.data);
+        return result.data!;
       } else {
         _onError(result.code, result.message, onError);
       }
+      return null;
     }, onError: (dynamic e) {
       _cancelLogPrint(e, url);
       final NetError error = ExceptionHandle.handleException(e);

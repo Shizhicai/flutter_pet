@@ -18,7 +18,7 @@ class BasePagePresenter<V extends IMvpView> extends BasePresenter<V> {
   }
 
   /// 返回Future适用于刷新，加载更多
-  Future requestNetwork<T>(
+  Future<T?> requestNetwork<T>(
     Method method, {
     required String url,
     bool isShow = true,
