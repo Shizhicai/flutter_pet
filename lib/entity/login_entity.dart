@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:flutter_pet/generated/json/base/json_field.dart';
-import 'package:flutter_pet/generated/json/login_entity_entity.g.dart';
+import 'package:flutter_pet/generated/json/login_entity.g.dart';
 
 @JsonSerializable()
-class LoginEntityEntity {
+class LoginEntity {
 
 	late String avatar;
-	late int id;
+	late int userId;
 	late String imSign;
 	late int isFirst;
 	late bool isHasPassword;
@@ -17,11 +17,11 @@ class LoginEntityEntity {
 	late int type;
 	late String userNo;
   
-  LoginEntityEntity();
+  LoginEntity();
 
-  factory LoginEntityEntity.fromJson(Map<String, dynamic> json) => $LoginEntityEntityFromJson(json);
+  factory LoginEntity.fromJson(Map<String, dynamic> json) => $LoginEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => $LoginEntityEntityToJson(this);
+  Map<String, dynamic> toJson() => $LoginEntityToJson(this);
 
   @override
   String toString() {

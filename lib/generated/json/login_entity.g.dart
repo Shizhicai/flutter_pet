@@ -1,59 +1,59 @@
 import 'package:flutter_pet/generated/json/base/json_convert_content.dart';
-import 'package:flutter_pet/entity/login_entity_entity.dart';
+import 'package:flutter_pet/entity/login_entity.dart';
 
-LoginEntityEntity $LoginEntityEntityFromJson(Map<String, dynamic> json) {
-	final LoginEntityEntity loginEntityEntity = LoginEntityEntity();
+LoginEntity $LoginEntityFromJson(Map<String, dynamic> json) {
+	final LoginEntity loginEntity = LoginEntity();
 	final String? avatar = jsonConvert.convert<String>(json['avatar']);
 	if (avatar != null) {
-		loginEntityEntity.avatar = avatar;
+		loginEntity.avatar = avatar;
 	}
-	final int? id = jsonConvert.convert<int>(json['id']);
-	if (id != null) {
-		loginEntityEntity.id = id;
+	final int? userId = jsonConvert.convert<int>(json['userId']);
+	if (userId != null) {
+		loginEntity.userId = userId;
 	}
 	final String? imSign = jsonConvert.convert<String>(json['imSign']);
 	if (imSign != null) {
-		loginEntityEntity.imSign = imSign;
+		loginEntity.imSign = imSign;
 	}
 	final int? isFirst = jsonConvert.convert<int>(json['isFirst']);
 	if (isFirst != null) {
-		loginEntityEntity.isFirst = isFirst;
+		loginEntity.isFirst = isFirst;
 	}
 	final bool? isHasPassword = jsonConvert.convert<bool>(json['isHasPassword']);
 	if (isHasPassword != null) {
-		loginEntityEntity.isHasPassword = isHasPassword;
+		loginEntity.isHasPassword = isHasPassword;
 	}
 	final String? nickName = jsonConvert.convert<String>(json['nickName']);
 	if (nickName != null) {
-		loginEntityEntity.nickName = nickName;
+		loginEntity.nickName = nickName;
 	}
 	final String? phone = jsonConvert.convert<String>(json['phone']);
 	if (phone != null) {
-		loginEntityEntity.phone = phone;
+		loginEntity.phone = phone;
 	}
 	final int? thirdBindId = jsonConvert.convert<int>(json['thirdBindId']);
 	if (thirdBindId != null) {
-		loginEntityEntity.thirdBindId = thirdBindId;
+		loginEntity.thirdBindId = thirdBindId;
 	}
 	final String? token = jsonConvert.convert<String>(json['token']);
 	if (token != null) {
-		loginEntityEntity.token = token;
+		loginEntity.token = token;
 	}
 	final int? type = jsonConvert.convert<int>(json['type']);
 	if (type != null) {
-		loginEntityEntity.type = type;
+		loginEntity.type = type;
 	}
 	final String? userNo = jsonConvert.convert<String>(json['userNo']);
 	if (userNo != null) {
-		loginEntityEntity.userNo = userNo;
+		loginEntity.userNo = userNo;
 	}
-	return loginEntityEntity;
+	return loginEntity;
 }
 
-Map<String, dynamic> $LoginEntityEntityToJson(LoginEntityEntity entity) {
+Map<String, dynamic> $LoginEntityToJson(LoginEntity entity) {
 	final Map<String, dynamic> data = <String, dynamic>{};
 	data['avatar'] = entity.avatar;
-	data['id'] = entity.id;
+	data['userId'] = entity.userId;
 	data['imSign'] = entity.imSign;
 	data['isFirst'] = entity.isFirst;
 	data['isHasPassword'] = entity.isHasPassword;

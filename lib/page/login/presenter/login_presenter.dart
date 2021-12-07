@@ -1,5 +1,7 @@
-import 'package:common_utils/common_utils.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter_pet/base/base_page_presenter.dart';
+import 'package:flutter_pet/common/constant.dart';
+import 'package:flutter_pet/entity/login_entity.dart';
 import 'package:flutter_pet/net/api.dart';
 import 'package:flutter_pet/net/dio_utils.dart';
 import 'package:flutter_pet/page/login/iview/login_iview.dart';
@@ -27,15 +29,15 @@ class LoginPagePresenter extends BasePagePresenter<LoginIMvpView> {
 
   /// 登录
   void login(String phone, {String code = '', String pwd = ''}) {
-    if (code == '' && pwd == '') {
-      return;
-    }
-    if (!TextUtil.isEmpty(code)) {
-      // 验证码登录
-
-    } else if (!TextUtil.isEmpty(pwd)) {
-      // 密码登录
-
-    }
+    final Map<String, dynamic> params = <String, dynamic>{};
+    params['code'] = code;
+    params['phone'] = phone;
+    params['thirdBindId'] = '';
+    asyncRequestNetwork<LoginEntity>(Method.post,
+        url: Api.loginCode, params: params, onSuccess: (data) {
+      print("${data!.toJson()}");
+      SpUtil.putString(Constant.spToken, data.token);
+      SpUtil.putObject(Constant.spLoginEntity,data.toJson());
+    });
   }
 }

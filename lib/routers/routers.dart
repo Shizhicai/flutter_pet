@@ -2,6 +2,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_pet/page/login/login_router.dart';
 import 'package:flutter_pet/page/not_found_page.dart';
+import 'package:flutter_pet/page/other/webview_page.dart';
 import 'package:flutter_pet/routers/i_router.dart';
 
 class Routes {
@@ -25,7 +26,12 @@ class Routes {
     // ));
 
     // WebView
-    // router.define(webViewPage, handler: Handler(handlerFunc: handlerFunc))
+    router.define(webViewPage, handler: Handler(
+        handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
+      final String title = params['title']?.first ?? '';
+      final String url = params['url']?.first ?? '';
+      return WebViewPage(title: title, url: url);
+    }));
 
     _listRouter.clear();
 

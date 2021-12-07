@@ -4,23 +4,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_pet/res/Colours.dart';
+import 'package:flutter_pet/res/colours.dart';
 import 'package:flutter_pet/widget/common_button.dart';
 import '../res/gaps.dart';
 import 'package:flutter_pet/utils/device_utils.dart';
 import 'package:flutter_pet/widget/load_image.dart';
 
 class InputTextField extends StatefulWidget {
-  const InputTextField({Key? key,
-    required this.controller,
-    this.maxLength = 16,
-    this.autoFocus = false,
-    this.keyboardType = TextInputType.text,
-    this.hintText = '',
-    this.focusNode,
-    this.isPwd = false,
-    this.keyName,
-    this.getVCode})
+  const InputTextField(
+      {Key? key,
+      required this.controller,
+      this.maxLength = 16,
+      this.autoFocus = false,
+      this.keyboardType = TextInputType.text,
+      this.hintText = '',
+      this.focusNode,
+      this.isPwd = false,
+      this.keyName,
+      this.btnName = "获取验证码",
+      this.getVCode})
       : super(key: key);
 
   final TextEditingController controller;
@@ -31,6 +33,7 @@ class InputTextField extends StatefulWidget {
   final FocusNode? focusNode;
   final bool isPwd;
   final Future<bool> Function()? getVCode;
+  final String btnName;
 
   /// 用于集成测试寻找widget
   final String? keyName;
@@ -109,8 +112,10 @@ class _InputTextFieldState extends State<InputTextField> {
       textInputAction: TextInputAction.done,
       keyboardType: widget.keyboardType,
       // 数字、手机号限制格式为0到9， 密码限制不包含汉字
-      inputFormatters: (widget.keyboardType == TextInputType.number || widget.keyboardType == TextInputType.phone) ?
-      [FilteringTextInputFormatter.allow(RegExp('[0-9]'))] : [FilteringTextInputFormatter.deny(RegExp('[\u4e00-\u9fa5]'))],
+      inputFormatters: (widget.keyboardType == TextInputType.number ||
+              widget.keyboardType == TextInputType.phone)
+          ? [FilteringTextInputFormatter.allow(RegExp('[0-9]'))]
+          : [FilteringTextInputFormatter.deny(RegExp('[\u4e00-\u9fa5]'))],
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
         hintText: widget.hintText,
@@ -123,7 +128,7 @@ class _InputTextFieldState extends State<InputTextField> {
         ),
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
-            color:  Colours.color_eee,
+            color: Colours.color_eee,
             width: 0.8,
           ),
         ),
@@ -179,28 +184,37 @@ class _InputTextFieldState extends State<InputTextField> {
     late Widget getVCodeButton;
     if (widget.getVCode != null) {
       getVCodeButton = CommonButton(
-        onPressed: _getVCode,
-        text: _clickable ? "获取验证码" : "($_currentSecond)s",
+        minHeight: 34,
+        onPressed: _clickable ? _getVCode : () {},
+        text: _clickable ? widget.btnName : "($_currentSecond)s",
+        isThemeBtn: false,
+        fontSize: 13,
+        isClick: _clickable,
+        textColor: Colours.color_222,
+        disabledTextColor: Colours.color_c0c0c0,
+        isShowBorder: true,
       );
     }
-    return Stack(
-      alignment: Alignment.centerRight,
-      children: [
-        textField,
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-
-            /// _isShowDelete参数动态变化，为了不破坏树结构使用Visibility，false时放一个空Widget。
-            /// 对于其他参数，为初始配置参数，基本可以确定树结构，就不做空Widget处理。
-            Visibility(
-                visible: _isShowDelete, child: clearButton ?? Gaps.empty),
-            if (widget.isPwd || widget.getVCode != null) Gaps.hGap15,
-            if (widget.isPwd) pwdVisible,
-            if (widget.getVCode != null) getVCodeButton,
-          ],
-        )
-      ],
+    return SizedBox(
+      height: 56,
+      child: Stack(
+        alignment: Alignment.centerRight,
+        children: [
+          textField,
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              /// _isShowDelete参数动态变化，为了不破坏树结构使用Visibility，false时放一个空Widget。
+              /// 对于其他参数，为初始配置参数，基本可以确定树结构，就不做空Widget处理。
+              Visibility(
+                  visible: _isShowDelete, child: clearButton ?? Gaps.empty),
+              if (widget.isPwd || widget.getVCode != null) Gaps.hGap15,
+              if (widget.isPwd) pwdVisible,
+              if (widget.getVCode != null) getVCodeButton,
+            ],
+          )
+        ],
+      ),
     );
   }
 }

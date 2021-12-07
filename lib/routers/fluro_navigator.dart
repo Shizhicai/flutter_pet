@@ -48,7 +48,8 @@ class NavigatorUtils {
   /// 跳转WebView页
   static goWebViewPage(BuildContext context, String title, String url) {
     // fluro 不支持中文，需要转换
-    push(context,'${Routes.webViewPage}?title=${Uri.encodeComponent(title)}&url=${Uri.encodeComponent(url)}');
+    push(context,
+        '${Routes.webViewPage}?title=${Uri.encodeComponent(title)}&url=${Uri.encodeComponent(url)}');
   }
 
   /// 带参数范湖
