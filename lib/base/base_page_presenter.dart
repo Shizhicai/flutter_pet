@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_pet/base/base_presenter.dart';
 import 'package:flutter_pet/base/mvps.dart';
+import 'package:flutter_pet/net/api.dart';
 import 'package:flutter_pet/net/dio_utils.dart';
 import 'package:flutter_pet/net/error_handle.dart';
 
@@ -18,8 +19,7 @@ class BasePagePresenter<V extends IMvpView> extends BasePresenter<V> {
   }
 
   /// 返回Future适用于刷新，加载更多
-  Future<T?> requestNetwork<T>(
-    Method method, {
+  Future<T?> requestNetwork<T>({
     required String url,
     bool isShow = true,
     bool isClose = true,
@@ -33,7 +33,7 @@ class BasePagePresenter<V extends IMvpView> extends BasePresenter<V> {
     if (isShow) {
       view.showProgress();
     }
-    return DioUtils.instance.requestNetwork<T>(method, url,
+    return DioUtils.instance.requestNetwork<T>(Api.apiMethod[url]!, url,
         params: params,
         queryParameters: queryParameters,
         options: options,
@@ -48,8 +48,7 @@ class BasePagePresenter<V extends IMvpView> extends BasePresenter<V> {
   }
 
   /// 异步请求
-  void asyncRequestNetwork<T>(
-    Method method, {
+  void asyncRequestNetwork<T>({
     required String url,
     bool isShow = true,
     bool isClose = true,
@@ -63,7 +62,7 @@ class BasePagePresenter<V extends IMvpView> extends BasePresenter<V> {
     if (isShow) {
       view.showProgress();
     }
-    DioUtils.instance.requestNetwork<T>(method, url,
+    DioUtils.instance.requestNetwork<T>(Api.apiMethod[url]!, url,
         params: params,
         queryParameters: queryParameters,
         options: options,

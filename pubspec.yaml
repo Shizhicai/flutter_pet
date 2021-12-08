@@ -41,6 +41,8 @@ dependencies:
   webview_flutter: ^2.0.7
   # 兼容decimal 版本
   decimal: 1.5.0
+  # 状态管理 https://github.com/rrousselGit/provider
+  provider: ^6.0.1
 
 dev_dependencies:
   flutter_test:
@@ -54,3 +56,4 @@ flutter:
     - assets/images/
     - assets/images/state/
     - assets/images/login/
+    - assets/images/home/

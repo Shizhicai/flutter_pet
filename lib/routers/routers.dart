@@ -1,5 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_pet/page/home/home_page.dart';
 import 'package:flutter_pet/page/login/login_router.dart';
 import 'package:flutter_pet/page/not_found_page.dart';
 import 'package:flutter_pet/page/other/webview_page.dart';
@@ -21,9 +22,9 @@ class Routes {
     });
 
     // 首页
-    // router.define(home, handler: Handler(handlerFunc:
-    //   (BuildContext? context, Map<String, List<String>> parameters)=> Home()
-    // ));
+    router.define(home, handler: Handler(handlerFunc:
+      (BuildContext? context, Map<String, List<String>> parameters)=> const HomePage()
+    ));
 
     // WebView
     router.define(webViewPage, handler: Handler(

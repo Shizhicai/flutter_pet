@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_pet/base/base_page.dart';
+import 'package:flutter_pet/common/common_iview.dart';
 import 'package:flutter_pet/page/login/presenter/find_pwd_presenter.dart';
 import 'package:flutter_pet/page/login/presenter/set_pwd_presenter.dart';
 import 'package:flutter_pet/res/Colours.dart';
 import 'package:flutter_pet/res/gaps.dart';
+import 'package:flutter_pet/routers/fluro_navigator.dart';
 import 'package:flutter_pet/widget/change_notifier_manage.dart';
 import 'package:flutter_pet/widget/common_button.dart';
 import 'package:flutter_pet/widget/div_app_bar.dart';
@@ -82,18 +84,20 @@ class _SetPwdPageState extends State<SetPwdPage>
               ),
               Gaps.vGap50,
               InputTextField(
+                isPwd:true,
                 controller: _pwdController,
                 hintText: '密码不少于8位，必须包含数字、字母',
                 maxLength: 20,
-                keyboardType: TextInputType.phone,
+                keyboardType: TextInputType.text,
                 focusNode: _nodeText1,
               ),
               InputTextField(
+                isPwd:true,
                 controller: _rePwdController,
                 hintText: '请再次输入密码',
                 focusNode: _nodeText2,
                 maxLength: 20,
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.text,
               ),
               Gaps.vGap35,
               CommonButton(
@@ -108,7 +112,13 @@ class _SetPwdPageState extends State<SetPwdPage>
   }
 
   void _changePwd() {
-    showToast('更改密码');
+    String pwdStr = _pwdController.text.toString();
+    String rePwdStr = _rePwdController.text.toString();
+    if (pwdStr != rePwdStr) {
+      showToast('两次密码不相同，请重新输入');
+      return;
+    }
+    presenter?.setPwd(widget.phone, widget.code, pwdStr);
   }
 
   @override

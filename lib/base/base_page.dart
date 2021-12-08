@@ -96,4 +96,11 @@ mixin BasePageMixin<T extends StatefulWidget, P extends BasePresenter>
     Log.d('$T ==> didUpdateWidgets');
     super.didUpdateWidget(oldWidget);
   }
+
+  @override
+  void jumpPage(String path,
+      {bool replace = false, bool clearStack = false, Object? arguments}) {
+    NavigatorUtils.push(context, path,
+        replace: replace, clearStack: clearStack, arguments: arguments);
+  }
 }

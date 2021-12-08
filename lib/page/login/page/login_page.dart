@@ -4,8 +4,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_pet/base/base_page.dart';
+import 'package:flutter_pet/common/common_iview.dart';
 import 'package:flutter_pet/common/constant.dart';
-import 'package:flutter_pet/page/login/iview/login_iview.dart';
 import 'package:flutter_pet/page/login/presenter/login_presenter.dart';
 import 'package:flutter_pet/res/colours.dart';
 import 'package:flutter_pet/res/gaps.dart';
@@ -28,8 +28,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage>
     with
         BasePageMixin<LoginPage, LoginPagePresenter>,
-        ChangeNotifierMixin<LoginPage>
-    implements LoginIMvpView {
+        ChangeNotifierMixin<LoginPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _codeController = TextEditingController();
   final FocusNode _nodeText1 = FocusNode();

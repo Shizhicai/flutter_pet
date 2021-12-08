@@ -16,11 +16,14 @@ class LoginRouter implements IRouterProvider {
     router.define(loginFindPwdPage,
         handler: Handler(handlerFunc: (_, __) => const FindPwdPage()));
     router.define(loginSetPwdPage,
-        handler: Handler(handlerFunc: (_,Map<String, List<String>> params)
-    {
-      final String code = params['code']?.first ?? '';
-      final String phone = params['phone']?.first ?? '';
-      return SetPwdPage(code: code, phone: phone,);
-    });
+        handler: Handler(handlerFunc: (context, params) {
+      final arguments = context!.settings!.arguments! as Map<String, dynamic>;
+      final String code = arguments['code'] ?? '';
+      final String phone = arguments['phone'] ?? '';
+      return SetPwdPage(
+        code: code,
+        phone: phone,
+      );
+    }));
   }
 }

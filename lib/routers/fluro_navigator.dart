@@ -10,7 +10,7 @@ class NavigatorUtils {
     Routes.router.navigateTo(context, path,
         replace: replace,
         clearStack: clearStack,
-        transition: TransitionType.native,
+        transition: TransitionType.cupertino ,
         routeSettings: RouteSettings(
           arguments: arguments,
         ));
@@ -24,7 +24,7 @@ class NavigatorUtils {
         .navigateTo(context, path,
             replace: replace,
             clearStack: clearState,
-            transition: TransitionType.native,
+            transition: TransitionType.cupertino ,
             routeSettings: RouteSettings(
               arguments: arguments,
             ))

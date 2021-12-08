@@ -9,6 +9,9 @@ abstract class IMvpView {
   void closeProgress();
 
   void showToast(String str);
+
+  void jumpPage(String path,
+      {bool replace = false, bool clearStack = false, Object? arguments});
 }
 
 abstract class IPresenter extends ILifecycle {}

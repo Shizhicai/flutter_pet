@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_pet/base/base_page.dart';
-import 'package:flutter_pet/page/login/iview/find_pwd_iview.dart';
+import 'package:flutter_pet/common/common_iview.dart';
 import 'package:flutter_pet/page/login/login_router.dart';
 import 'package:flutter_pet/page/login/presenter/find_pwd_presenter.dart';
 import 'package:flutter_pet/res/Colours.dart';
@@ -22,8 +22,7 @@ class FindPwdPage extends StatefulWidget {
 }
 
 class _FindPwdPageState extends State<FindPwdPage>
-    with BasePageMixin<FindPwdPage, FindPwdPresenter>, ChangeNotifierMixin
-    implements FindPwdIMvpView {
+    with BasePageMixin<FindPwdPage, FindPwdPresenter>, ChangeNotifierMixin {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _codeController = TextEditingController();
   final FocusNode _nodeText1 = FocusNode();

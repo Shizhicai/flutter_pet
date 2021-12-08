@@ -167,7 +167,7 @@ class _InputTextFieldState extends State<InputTextField> {
         hint: '密码是否可见',
         child: GestureDetector(
           child: LoadAssetImage(
-            _isShowPwd ? 'login/ic_input_display' : 'ic_input_hide',
+            _isShowPwd ? 'login/ic_input_display' : 'login/ic_input_hide',
             key: Key('${widget.keyName}_showPwd'),
             width: 18.0,
             height: 40.0,
