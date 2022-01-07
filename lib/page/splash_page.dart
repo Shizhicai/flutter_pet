@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_pet/common/constant.dart';
 import 'package:flutter_pet/routers/fluro_navigator.dart';
+import 'package:flutter_pet/routers/routers.dart';
 import 'package:flutter_pet/utils/device_utils.dart';
 import 'package:flutter_pet/utils/image_utils.dart';
 import 'package:flutter_pet/utils/theme_utils.dart';
@@ -60,7 +61,7 @@ class _SplashPageState extends State<SplashPage> {
         SpUtil.putBool(Constant.spShowGuide, false);
         _initGuide();
       } else {
-        _goLogin();
+        _jumpPage();
       }
     });
   }
@@ -71,8 +72,14 @@ class _SplashPageState extends State<SplashPage> {
     });
   }
 
-  void _goLogin() {
-    NavigatorUtils.push(context, LoginRouter.loginPage, replace: true);
+  void _jumpPage() {
+    String page;
+    if (SpUtil.getString(Constant.spToken, defValue: "") == "") {
+      page = LoginRouter.loginPage;
+    } else {
+      page = Routes.home;
+    }
+    NavigatorUtils.push(context, page, replace: true);
   }
 
   @override
@@ -102,7 +109,7 @@ class _SplashPageState extends State<SplashPage> {
               itemCount: _guideList.length,
               onTap: (int index) {
                 if (index == _guideList.length - 1) {
-                  _goLogin();
+                  _jumpPage();
                 }
               },
             ),

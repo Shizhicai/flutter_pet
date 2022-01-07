@@ -1,5 +1,4 @@
 import 'package:flutter_pet/base/base_page_presenter.dart';
-import 'package:flutter_pet/common/common_iview.dart';
 import 'package:flutter_pet/net/api.dart';
 import 'package:flutter_pet/type/code_type.dart';
 import 'package:oktoast/oktoast.dart';

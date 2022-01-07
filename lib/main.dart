@@ -4,14 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_pet/net/dio_utils.dart';
 import 'package:flutter_pet/net/intercept.dart';
-import 'package:flutter_pet/page/login/page/login_page.dart';
+import 'package:flutter_pet/page/login/page/first_input_info_page.dart';
+import 'package:flutter_pet/page/login/page/first_input_pet_page.dart';
 import 'package:flutter_pet/page/not_found_page.dart';
-import 'package:flutter_pet/page/splash_page.dart';
+import 'package:flutter_pet/page/other/page/select_list_date_page.dart';
 import 'package:flutter_pet/routers/routers.dart';
 import 'package:flutter_pet/utils/handle_error_utils.dart';
 import 'package:flutter_pet/utils/log_utils.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:url_strategy/url_strategy.dart';
+import 'package:flutter_localizations/flutter_localizations.dart'; // 添加
 
 import 'common/constant.dart';
 
@@ -86,7 +88,17 @@ class MyApp extends StatelessWidget {
       // showSemanticsDebugger: true, // 显示语义视图
       // checkerboardOffscreenLayers: true, // 检查离屏渲染
 
-      home: home ?? const LoginPage(),
+      home: /*home ?? const LoginPage()*/ const SelectListDataPage(
+          type: SelectListDataPage.TYPE_PET, title: "请选择宠物类型"),
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('zh', 'CH'),
+        Locale('en', 'US'),
+      ],
+      locale: const Locale('zh'),
       onGenerateRoute: Routes.router.generator,
       navigatorKey: navigatorKey,
       builder: (BuildContext context, Widget? child) {

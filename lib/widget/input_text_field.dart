@@ -21,6 +21,7 @@ class InputTextField extends StatefulWidget {
       this.focusNode,
       this.isPwd = false,
       this.keyName,
+      this.isNickName = false,
       this.btnName = "获取验证码",
       this.getVCode})
       : super(key: key);
@@ -34,6 +35,7 @@ class InputTextField extends StatefulWidget {
   final bool isPwd;
   final Future<bool> Function()? getVCode;
   final String btnName;
+  final bool isNickName;
 
   /// 用于集成测试寻找widget
   final String? keyName;
@@ -112,10 +114,12 @@ class _InputTextFieldState extends State<InputTextField> {
       textInputAction: TextInputAction.done,
       keyboardType: widget.keyboardType,
       // 数字、手机号限制格式为0到9， 密码限制不包含汉字
-      inputFormatters: (widget.keyboardType == TextInputType.number ||
-              widget.keyboardType == TextInputType.phone)
-          ? [FilteringTextInputFormatter.allow(RegExp('[0-9]'))]
-          : [FilteringTextInputFormatter.deny(RegExp('[\u4e00-\u9fa5]'))],
+      inputFormatters: (widget.isNickName
+          ? []
+          : (widget.keyboardType == TextInputType.number ||
+                  widget.keyboardType == TextInputType.phone)
+              ? [FilteringTextInputFormatter.allow(RegExp('[0-9]'))]
+              : [FilteringTextInputFormatter.deny(RegExp('[\u4e00-\u9fa5]'))]),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
         hintText: widget.hintText,

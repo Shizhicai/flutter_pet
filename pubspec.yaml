@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations: # 添加
+    sdk: flutter         # 添加
   # 去除网页URL中的“#”(hash) https://flutter.cn/docs/development/ui/navigation/url-strategies
   url_strategy: 0.2.0
   # 网络库 https://github.com/flutterchina/dio
@@ -43,6 +45,8 @@ dependencies:
   decimal: 1.5.0
   # 状态管理 https://github.com/rrousselGit/provider
   provider: ^6.0.1
+  # 时间选择器
+  date_time_picker: "^2.1.0"
 
 dev_dependencies:
   flutter_test:

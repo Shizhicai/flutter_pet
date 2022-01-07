@@ -25,8 +25,10 @@ class BaseEntity<T> {
     if (T.toString() == 'String') {
       return json.toString() as T;
     } else if (T.toString() == 'Map<String, dynamic>') {
+      print("==== Map");
       return json as T;
     } else {
+      print("==== fromJsonAsT");
       return JsonConvert.fromJsonAsT<T>(json);
     }
   }

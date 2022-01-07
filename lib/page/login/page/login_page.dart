@@ -4,7 +4,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_pet/base/base_page.dart';
-import 'package:flutter_pet/common/common_iview.dart';
 import 'package:flutter_pet/common/constant.dart';
 import 'package:flutter_pet/page/login/presenter/login_presenter.dart';
 import 'package:flutter_pet/res/colours.dart';
